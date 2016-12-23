@@ -4,5 +4,7 @@
   "oauth_host": "github.com",
   "oauth_port": 443,
   "oauth_path": "/login/oauth/access_token",
+  "travis_host": "api.travis-ci.org",
+  "travis_auth_path": "/auth/github",
   "oauth_method": "POST"
 }
