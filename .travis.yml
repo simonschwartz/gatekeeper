@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '6'
+script:
+- echo "Hello world"
+deploy:
+  provider: heroku
+  api_key:
+    secure: AvkfPl2vWfd+oodOujxvUvlkzsJjXKZxikMl+TRT/P+iz9d7nrJZXIPMR8PxhJh/Gt3HgpLf64/JvEpK0dSia2qby4Al2y5laXbUWy90h7VxApxZlGJvCit5BhY1EAfYUdp6HDLZwroebc/WN8XG7HLFarF3nPWd+j0srvFbIegF33o9qKwScM/LomwWkI/xXPawzr3lq3UtoevKB9/N2CCTx+lA04K3cy52mHljhZ1BhAjrsKX7JK8C1aDZwgksPpplWQqGj9DyYQ6RURJCw66RTpS2++5+CjfUMQR/nCDheMbtUKnxJsPTazpeVmM+VtjQt85iBCsL5JI3+gTCPK8E+9us4YbNz7tCxuGf9SqGOpogvYMvM6ANpxkky6Kc+RzYlwAx8twaOoPVkEFeTX0XqUkBs2bX9sLivNzb28VWY/hXxNWMXDKnCq1Of9xb2K8tJ05u3dDIJ+7sg6mMr13D41dKaMd2rRe+FGfzQ/aMufdRivbX6CivLzexXlyQtc90r47huDC5O7C01kT2YbXUeWMXO3mDXRJEGgryiTvae6/TQ0WMfOLH/QrzG0RaMPuFtAG+Zly1ELR8PB1IXu74BQUWyk2z2RlHFKkVohGR42ok+A8+1BkJzqyWRbohyF/L7rVorMIFrAkIVqY7jHNQvJQoTY8032b7F5pxCAE=
+  app:
+    master: codeflight-gatekeeper
+    staging: codeflight-gatekeeper-staging
