@@ -106,8 +106,8 @@ app.get('/auth/travis/:github_token', function(req, res) {
   });
 });
 
-var port = process.env.PORT || 9999;
+var port = process.env.PORT || config.port || 9999;
 
-app.listen(port, function (err) {
+app.listen(port, null, function (err) {
   console.log('Gatekeeper, at your service: http://localhost:' + port);
 });
