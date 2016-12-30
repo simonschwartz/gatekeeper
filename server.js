@@ -100,7 +100,6 @@ app.get('/authenticate/:code', function(req, res) {
   });
 });
 
-/*
 app.get('/auth/travis/:github_token', function(req, res) {
   authenticateTravis(req.params.github_token, function(err, access_token) {
     var result = err || !access_token ? {"error": "bad_github_token"} : { access_token };
@@ -108,7 +107,7 @@ app.get('/auth/travis/:github_token', function(req, res) {
     res.json(result);
   });
 });
-*/
+
 var port = process.env.PORT || config.port || 9999;
 
 app.listen(port, null, function (err) {
