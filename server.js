@@ -70,7 +70,7 @@ function authenticateTravis(github_token, cb) {
     res.on('data', function (chunk) { body += chunk; });
     res.on('end', function() {
       var tokenString = body.match(':"(.*)"}');
-      if (tokenString[1])
+      if (tokenString[1]) {
         cb(null, tokenString[1]); //this is our Travis API token
       }
     });
