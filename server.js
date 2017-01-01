@@ -81,6 +81,37 @@ function authenticateTravis(github_token, cb) {
   req.on('error', function(e) { cb(e.message); });
 }
 
+function setEnvVar(name, value, travisToken, repoid, cb) {
+  var data = JSON.stringify({
+    env_var: { name: name, value: value},
+  });
+
+  var setVars = {
+    host: config.travis_host,
+    port: config.oauth_port,
+    path: config.travis_env_path+repoid,
+    method: config.oauth_method,
+    headers: {
+      'Authorization': 'token ' + travisToken,
+      "Content-Type": "application/json"
+    }
+  }
+
+  var req = https.request(setVars, function(res) {
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) { console.log('Response: ' + chunk); });
+    res.on('end', function() {
+      cb(null, 'environment variable set'); //this is our Travis API token
+    });
+  });
+
+  //console.log('var sent')
+  req.write(data);
+  req.end();
+  req.on('error', function(e) { cb(e.message); });
+
+}
+
 
 // Convenience for allowing CORS on routes - GET only
 app.all('*', function (req, res, next) {
@@ -105,6 +136,17 @@ app.get('/auth/travis/:github_token', function(req, res) {
     var result = err || !access_token ? {"error": "bad_github_token"} : { access_token };
     console.log(result)
     res.json(result);
+  });
+});
+
+app.get('/setenv/:repoid/:travis_token', function(req, res) {
+  setEnvVar('SURGE_LOGIN', config.surge_login, req.params.travis_token, req.params.repoid, function(err, cb) {
+    var result = err || !cb ? {"error": "could not set environment variables"} : { cb };
+    console.log('1st set! '+result)
+    setEnvVar('SURGE_TOKEN', config.surge_token, req.params.travis_token, req.params.repoid, function(err, cb) {
+      console.log('2nd set! '+result)
+      res.json('Set Env Vars');
+    });
   });
 });
 
