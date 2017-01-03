@@ -83,7 +83,10 @@ function authenticateTravis(github_token, cb) {
 
 function setEnvVar(name, value, travisToken, repoid, cb) {
   var data = JSON.stringify({
-    env_var: { name: name, value: value},
+    env_var: {
+      name: name,
+      value: value
+    }
   });
 
   var setVars = {
@@ -97,7 +100,7 @@ function setEnvVar(name, value, travisToken, repoid, cb) {
     }
   }
 
-  var req = https.request(setVars, function(res) {
+  var reqa = https.request(setVars, function(res) {
     res.setEncoding('utf8');
     res.on('data', function (chunk) { console.log('Response: ' + chunk); });
     res.on('end', function() {
@@ -106,9 +109,9 @@ function setEnvVar(name, value, travisToken, repoid, cb) {
   });
 
   //console.log('var sent')
-  req.write(data);
-  req.end();
-  req.on('error', function(e) { cb(e.message); });
+  reqa.write(data);
+  reqa.end();
+  reqa.on('error', function(e) { cb(e.message); });
 
 }
 

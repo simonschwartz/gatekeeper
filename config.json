@@ -6,6 +6,7 @@
   "oauth_path": "/login/oauth/access_token",
   "travis_host": "api.travis-ci.org",
   "travis_auth_path": "/auth/github",
+  "travis_env_path": "/settings/env_vars?repository_id=",
   "oauth_method": "POST",
   "surge_login": "SURGE_LOGIN",
   "surge_token": "SURGE_TOKEN",
